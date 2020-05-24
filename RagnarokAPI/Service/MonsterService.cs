@@ -23,7 +23,7 @@ namespace RagnarokAPI.Service
             _monsters.Find(monster => true).ToList();
 
         public Monster Get(string id) =>
-            _monsters.Find<Monster>(monster => monster.Id == id).FirstOrDefault();
+            _monsters.Find<Monster>(monster => monster.IdMonstro == id).FirstOrDefault();
 
         public Monster Create(Monster monster)
         {

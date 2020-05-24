@@ -31,10 +31,17 @@ namespace RagnarokAPI
             services.Configure<MonsterDatabaseSettings>(
                 Configuration.GetSection(nameof(MonsterDatabaseSettings)));
 
+            services.Configure<ItemDatabaseSettings>(
+                Configuration.GetSection(nameof(ItemDatabaseSettings)));
+
             services.AddSingleton<IMonsterDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<MonsterDatabaseSettings>>().Value);
 
+            services.AddSingleton<IItemDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<ItemDatabaseSettings>>().Value);
+
             services.AddSingleton<MonsterService>();
+            services.AddSingleton<ItemService>();
 
             services.AddControllers();
         }
