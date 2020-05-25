@@ -17,6 +17,28 @@ namespace RagnarokAPI.Models.Items
         [BsonElement("id")]
         public IdItem IdItem { get; set; }
 
+        [BsonElement("name")]
+        public NameItem Name { get; set; }
+
+        [BsonElement("image")]
+        public ImageInformation Image { get; set; }
+
+        [BsonElement("description")]
+        public ItemDescription Description { get; set; }
+    }
+
+    [BsonIgnoreExtraElements]
+    public class ItemDescription
+    {
+        [BsonElement("identified")]
+        public string ItemDesc { get; set; }
+    }
+
+    [BsonIgnoreExtraElements]
+    public class NameItem
+    {
+        [BsonElement("identified")]
+        public string NameText { get; set; }
     }
 
     [BsonIgnoreExtraElements]
