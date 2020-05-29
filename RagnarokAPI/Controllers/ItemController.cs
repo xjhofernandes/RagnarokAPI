@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RagnarokAPI.Models;
 using RagnarokAPI.Models.Items;
 using RagnarokAPI.Service;
+using RagnarokAPI.ViewModel;
 
 namespace RagnarokAPI.Controllers
 {
@@ -25,7 +27,7 @@ namespace RagnarokAPI.Controllers
             _itemService.Get();
 
         [HttpGet("{id}", Name = "GetItem")]
-        public ActionResult<Item> Get(int id)
+        public ActionResult<ItemViewModel> Get(int id)
         {
             var item = _itemService.Get(id);
 
@@ -33,8 +35,20 @@ namespace RagnarokAPI.Controllers
             {
                 return NotFound();
             }
+            var rx = new Regex("<[^>]*>");
+            item.Description.ItemDesc = item.Description.ItemDesc != null ? rx.Replace(item.Description.ItemDesc, "") : null;
 
-            return item;
+            var itemView = new ItemViewModel()
+            {
+                ItemId = item.IdItem.ItemIdentification,
+                NameItem = item.Name.NameText,
+                CardImgUrl = item.Image.CardImgUrl,
+                CollectionImgUrl = item.Image.CollectionImgUrl,
+                ItemImgUrl = item.Image.itemImgUrl,
+                ItemDescription = item.Description.ItemDesc,
+            };
+
+            return itemView;
         }
 
         [HttpPut("{id}")]
