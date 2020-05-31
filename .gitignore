@@ -3,3 +3,5 @@
 .vs/RagnarokAPI/DesignTimeBuild/.dtbcache.v2
 .vs/RagnarokAPI/v16/.suo
 RagnarokAPI/bin/Debug/netcoreapp3.1/appsettings.Development.json
+RagnarokAPI/bin
+RagnarokAPI/obj
