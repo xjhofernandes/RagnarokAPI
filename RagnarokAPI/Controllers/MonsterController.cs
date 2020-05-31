@@ -25,8 +25,16 @@ namespace RagnarokAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Monster>> Get() =>
-            _monsterService.Get();
+        public ActionResult<List<MonsterViewModel>> Get()
+        {
+            var monsterList = new List<MonsterViewModel>();
+
+            foreach (var monster in _monsterService.Get())
+            {
+                monsterList.Add(CreateMonsterView(monster));
+            }
+            return monsterList;
+        }
 
         [HttpGet("{id}", Name = "GetMonster")]
         public ActionResult<MonsterViewModel> Get(string id)
@@ -38,6 +46,11 @@ namespace RagnarokAPI.Controllers
                 return NotFound();
             }
 
+            return CreateMonsterView(monster);
+        }
+
+        private MonsterViewModel CreateMonsterView(Monster monster)
+        {
             var elements = new Element
             {
                 Dark = monster.Stats.Element.Dark,
@@ -62,21 +75,22 @@ namespace RagnarokAPI.Controllers
 
             var maps = new List<Spawn>();
 
-            foreach (var map in monster.Spawns)
-            {
-                maps.Add(new Spawn()
+            if (monster.Spawns != null)
+                foreach (var map in monster.Spawns)
                 {
-                    MapId = map.Map.MapId,
-                    MapName = map.Map.Name,
-                });
-            }
+                    maps.Add(new Spawn()
+                    {
+                        MapId = map.Map.MapId,
+                        MapName = map.Map.Name,
+                    });
+                }
 
             var monsterView = new MonsterViewModel()
             {
                 MonsterId = monster.IdMonstro,
                 MonsterName = monster.Name.Name,
                 MonsterGifUrl = monster.Image.GifUrl,
-                MonsterDrops = _itemService.Get(monster.Drop.Normal.Select(x => x.Item.IdItem).ToList()),
+                MonsterDrops = monster.Drop.Normal != null ? _itemService.Get(monster.Drop.Normal.Select(x => x.Item.IdItem).ToList()) : null,
                 ElementExtraDamage = elements,
                 MonsterStats = stats,
                 MonsterSpawnMaps = maps

@@ -42,6 +42,8 @@ namespace RagnarokAPI.Service
 
         public ItemViewModel CreateItemViewModel(Item item)
         {
+            if (item == null)
+                return null;
             var rx = new Regex("<[^>]*>");
             item.Description.ItemDesc = item.Description.ItemDesc != null ? rx.Replace(item.Description.ItemDesc, "") : null;
 
