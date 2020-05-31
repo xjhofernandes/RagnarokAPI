@@ -23,8 +23,15 @@ namespace RagnarokAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Item>> Get() =>
-            _itemService.Get();
+        public ActionResult<List<ItemViewModel>> Get()
+        {
+            var items = new List<ItemViewModel>();
+            foreach (var item in _itemService.Get())
+            {
+                items.Add(_itemService.CreateItemViewModel(item));
+            }
+            return items;
+        }
 
         [HttpGet("{id}", Name = "GetItem")]
         public ActionResult<ItemViewModel> Get(int id)
@@ -35,22 +42,11 @@ namespace RagnarokAPI.Controllers
             {
                 return NotFound();
             }
-            var rx = new Regex("<[^>]*>");
-            item.Description.ItemDesc = item.Description.ItemDesc != null ? rx.Replace(item.Description.ItemDesc, "") : null;
-
-            var itemView = new ItemViewModel()
-            {
-                ItemId = item.IdItem.ItemIdentification,
-                NameItem = item.Name.NameText,
-                CardImgUrl = item.Image.CardImgUrl,
-                CollectionImgUrl = item.Image.CollectionImgUrl,
-                ItemImgUrl = item.Image.itemImgUrl,
-                ItemDescription = item.Description.ItemDesc,
-            };
+            var itemView = _itemService.CreateItemViewModel(item);
 
             return itemView;
         }
-
+        
         [HttpPut("{id}")]
         public IActionResult Update(int id, Item itemIn)
         {
