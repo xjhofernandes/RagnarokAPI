@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using RagnarokAPI.Models;
 using RagnarokAPI.Service;
 using RagnarokAPI.ViewModel;
-
+using Element = RagnarokAPI.ViewModel.Element;
+using Spawn = RagnarokAPI.ViewModel.Spawn;
+using Stats = RagnarokAPI.ViewModel.Stats;
 
 namespace RagnarokAPI.Controllers
 {

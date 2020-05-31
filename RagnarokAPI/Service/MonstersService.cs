@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using RagnarokAPI.Models;
 using RagnarokAPI.DataBaseSettings;
-using IMonsterDatabaseSettings = RagnarokAPI.DataBaseSettings.IMonsterDatabaseSettings;
+using IMonsterDatabaseSettingsFix = RagnarokAPI.DataBaseSettings.IMonsterDatabaseSettingsFix;
 
 namespace RagnarokAPI.Service
 {
@@ -13,7 +13,7 @@ namespace RagnarokAPI.Service
     {
         private readonly IMongoCollection<MonstersCollection> _monsters;
 
-        public MonstersService(IMonsterDatabaseSettings settings)
+        public MonstersService(IMonsterDatabaseSettingsFix settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);

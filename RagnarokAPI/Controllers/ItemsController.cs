@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RagnarokAPI.Models;
+using RagnarokAPI.Models.Items;
+using RagnarokAPI.Service;
+using RagnarokAPI.ViewModel;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,36 +16,68 @@ namespace RagnarokAPI.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        // GET: api/<ItemsCollectionController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly ItemsService _itemsService;
+
+        public ItemsController(ItemsService itemsService)
         {
-            return new string[] { "value1", "value2" };
+            _itemsService = itemsService;
         }
 
-        // GET api/<ItemsCollectionController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
-        // POST api/<ItemsCollectionController>
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<ItemsCollection> Create(ItemsCollection item)
         {
+            _itemsService.Create(item);
+
+            return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
         }
 
-        // PUT api/<ItemsCollectionController>/5
+        [HttpGet]
+        public ActionResult<List<ItemsCollection>> Get() => _itemsService.Get();
+
+        [HttpGet("{id}", Name = "GetItems")]
+        public ActionResult<ItemsCollection> Get(int id)
+        {
+            var item = _itemsService.Get(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return item;
+        }
+
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Update(int id, ItemsCollection itemIn)
         {
+            var item = _itemsService.Get(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _itemsService.Update(id, itemIn);
+
+            return NoContent();
         }
 
-        // DELETE api/<ItemsCollectionController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id:length(24)}")]
+        public IActionResult Delete(int id)
         {
+            var item = _itemsService.Get(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _itemsService.Remove(item.Id);
+
+            return NoContent();
         }
+
     }
 }

@@ -7,7 +7,7 @@ using MongoDB.Driver;
 using RagnarokAPI.Models;
 using RagnarokAPI.ViewModel;
 using RagnarokAPI.DataBaseSettings;
-using IItemDatabaseSettings = RagnarokAPI.DataBaseSettings.IItemDatabaseSettings;
+using IItemDatabaseSettingsFix = RagnarokAPI.DataBaseSettings.IItemDatabaseSettingsFix;
 
 namespace RagnarokAPI.Service
 {
@@ -15,7 +15,7 @@ namespace RagnarokAPI.Service
     {
         private readonly IMongoCollection<ItemsCollection> _items;
 
-        public ItemsService(IItemDatabaseSettings settings)
+        public ItemsService(IItemDatabaseSettingsFix settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
@@ -25,6 +25,12 @@ namespace RagnarokAPI.Service
 
         public List<ItemsCollection> Get() =>
             _items.Find(item => true).ToList();
+
+        internal ItemsCollection Create(ItemsCollection item)
+        {
+            _items.InsertOne(item);
+            return item;
+        }
 
         public ItemsCollection Get(int id) =>
             _items.Find<ItemsCollection>(item => item.ItemId == id).FirstOrDefault();

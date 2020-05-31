@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RagnarokAPI.DataBaseSettings
 {
-    public class MonsterDatabaseSettings : IMonsterDatabaseSettings
+    public class MonsterDatabaseSettingsFix : IMonsterDatabaseSettingsFix
     {
         public string MonstersFixCollectionName { get; set; }
         public string ConnectionString { get; set; }
