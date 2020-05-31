@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RagnarokAPI.Models;
-using RagnarokAPI.Models.Items;
 using RagnarokAPI.Service;
 using RagnarokAPI.ViewModel;
 

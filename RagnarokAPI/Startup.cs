@@ -29,23 +29,11 @@ namespace RagnarokAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MonsterDatabaseSettings>(
-                Configuration.GetSection(nameof(MonsterDatabaseSettings)));
-
-            services.Configure<ItemDatabaseSettings>(
-                Configuration.GetSection(nameof(ItemDatabaseSettings)));
-
             services.Configure<MonsterDatabaseSettingsFix>(
                 Configuration.GetSection(nameof(MonsterDatabaseSettingsFix)));
 
             services.Configure<ItemDatabaseSettingsFix>(
                 Configuration.GetSection(nameof(ItemDatabaseSettingsFix)));
-
-            services.AddSingleton<IMonsterDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<MonsterDatabaseSettings>>().Value);
-
-            services.AddSingleton<IItemDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<ItemDatabaseSettings>>().Value);
 
             services.AddSingleton<IMonsterDatabaseSettingsFix>(sp =>
                 sp.GetRequiredService<IOptions<MonsterDatabaseSettingsFix>>().Value);
@@ -53,12 +41,8 @@ namespace RagnarokAPI
             services.AddSingleton<IItemDatabaseSettingsFix>(sp =>
                 sp.GetRequiredService<IOptions<ItemDatabaseSettingsFix>>().Value);
 
-            services.AddSingleton<MonsterService>();
-            services.AddSingleton<ItemService>();
-
             services.AddSingleton<MonstersService>();
             services.AddSingleton<ItemsService>();
-
 
             services.AddControllers();
         }
