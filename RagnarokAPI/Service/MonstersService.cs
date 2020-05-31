@@ -24,6 +24,18 @@ namespace RagnarokAPI.Service
         public List<MonstersCollection> Get() =>
             _monsters.Find(monster => true).ToList();
 
+        internal List<MonstersCollection> Create(List<MonstersCollection> monsters)
+        {
+            _monsters.InsertMany(monsters);
+            return monsters;
+        }
+
+        internal MonstersCollection Create(MonstersCollection monster)
+        {
+            _monsters.InsertOne(monster);
+            return monster;
+        }
+
         public MonstersCollection Get(string id) =>
             _monsters.Find<MonstersCollection>(monster => monster.MonsterId == id).FirstOrDefault();
 

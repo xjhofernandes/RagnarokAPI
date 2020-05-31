@@ -23,8 +23,6 @@ namespace RagnarokAPI.Controllers
             _itemsService = itemsService;
         }
 
-
-
         [HttpPost]
         public ActionResult<ItemsCollection> Create(ItemsCollection item)
         {
