@@ -5,9 +5,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using RagnarokAPI.Models;
-using RagnarokAPI.ViewModel;
 using RagnarokAPI.DataBaseSettings;
-using IItemDatabaseSettingsFix = RagnarokAPI.DataBaseSettings.IItemDatabaseSettingsFix;
+using IItemDatabaseSettings = RagnarokAPI.DataBaseSettings.IItemDatabaseSettings;
 
 namespace RagnarokAPI.Service
 {
@@ -15,7 +14,7 @@ namespace RagnarokAPI.Service
     {
         private readonly IMongoCollection<ItemsCollection> _items;
 
-        public ItemsService(IItemDatabaseSettingsFix settings)
+        public ItemsService(IItemDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
