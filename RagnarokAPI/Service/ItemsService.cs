@@ -19,7 +19,7 @@ namespace RagnarokAPI.Service
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _items = database.GetCollection<ItemsCollection>(settings.ItemsFixCollectionName);
+            _items = database.GetCollection<ItemsCollection>(settings.ItemsCollectionName);
         }
 
         public List<ItemsCollection> Get() =>

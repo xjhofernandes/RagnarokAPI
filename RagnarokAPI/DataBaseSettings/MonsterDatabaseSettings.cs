@@ -7,7 +7,7 @@ namespace RagnarokAPI.DataBaseSettings
 {
     public class MonsterDatabaseSettings : IMonsterDatabaseSettings
     {
-        public string MonstersFixCollectionName { get; set; }
+        public string MonstersCollectionName { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
     }
