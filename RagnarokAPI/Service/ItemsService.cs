@@ -26,11 +26,18 @@ namespace RagnarokAPI.Service
         public List<ItemsCollection> Get() =>
             _items.Find(item => true).ToList();
 
+        internal List<ItemsCollection> Create(List<ItemsCollection> item)
+        {
+            _items.InsertMany(item);
+            return item;
+        }
+
         internal ItemsCollection Create(ItemsCollection item)
         {
             _items.InsertOne(item);
             return item;
         }
+
 
         public ItemsCollection Get(int id) =>
             _items.Find<ItemsCollection>(item => item.ItemId == id).FirstOrDefault();

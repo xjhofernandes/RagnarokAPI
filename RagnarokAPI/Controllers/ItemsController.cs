@@ -33,6 +33,15 @@ namespace RagnarokAPI.Controllers
             return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
         }
 
+        [HttpPost]
+        public ActionResult<ItemsCollection> Create(List<ItemsCollection> item)
+        {
+            _itemsService.Create(item);
+
+            //return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
+            return null;
+        }
+
         [HttpGet]
         public ActionResult<List<ItemsCollection>> Get() => _itemsService.Get();
 
