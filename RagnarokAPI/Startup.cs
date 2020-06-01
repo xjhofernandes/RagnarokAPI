@@ -41,8 +41,8 @@ namespace RagnarokAPI
             services.AddSingleton<IItemDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<ItemDatabaseSettings>>().Value);
 
-            services.AddSingleton<MonstersService>();
-            services.AddSingleton<ItemsService>();
+            services.AddSingleton<MonsterService>();
+            services.AddSingleton<ItemService>();
 
             services.AddControllers();
         }

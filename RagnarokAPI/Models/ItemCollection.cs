@@ -7,7 +7,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace RagnarokAPI.Models
 {
-    public class ItemsCollection
+    public class ItemCollection
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }

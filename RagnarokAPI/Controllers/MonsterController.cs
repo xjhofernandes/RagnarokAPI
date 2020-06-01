@@ -12,31 +12,31 @@ namespace RagnarokAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MonstersController : ControllerBase
+    public class MonsterController : ControllerBase
     {
-        private readonly MonstersService _monstersService;
+        private readonly MonsterService _monsterService;
 
-        public MonstersController(MonstersService monstersService)
+        public MonsterController(MonsterService monsterService)
         {
-            _monstersService = monstersService;
+            _monsterService = monsterService;
         }
 
         [HttpPost]
-        public ActionResult<MonstersCollection> Create(List<MonstersCollection> monsters)
+        public ActionResult<MonsterCollection> Create(List<MonsterCollection> monsters)
         {
-            _monstersService.Create(monsters);
+            _monsterService.Create(monsters);
 
             //return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
             return null;
         }
 
         [HttpGet]
-        public ActionResult<List<MonstersCollection>> Get() => _monstersService.Get();
+        public ActionResult<List<MonsterCollection>> Get() => _monsterService.Get();
 
         [HttpGet("{id}", Name = "GetMonsters")]
-        public ActionResult<MonstersCollection> Get(string id)
+        public ActionResult<MonsterCollection> Get(string id)
         {
-            var item = _monstersService.Get(id);
+            var item = _monsterService.Get(id);
 
             if (item == null)
             {
@@ -47,16 +47,16 @@ namespace RagnarokAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(string id, MonstersCollection itemIn)
+        public IActionResult Update(string id, MonsterCollection itemIn)
         {
-            var item = _monstersService.Get(id);
+            var item = _monsterService.Get(id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            _monstersService.Update(id, itemIn);
+            _monsterService.Update(id, itemIn);
 
             return NoContent();
         }
@@ -64,14 +64,14 @@ namespace RagnarokAPI.Controllers
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var item = _monstersService.Get(id);
+            var item = _monsterService.Get(id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            _monstersService.Remove(item.Id);
+            _monsterService.Remove(item.Id);
 
             return NoContent();
         }

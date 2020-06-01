@@ -9,7 +9,7 @@ using RagnarokAPI.Models;
 
 namespace RagnarokAPI.Models
 {
-    public class MonstersCollection
+    public class MonsterCollection
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
@@ -24,7 +24,7 @@ namespace RagnarokAPI.Models
         public string MonsterGifUrl { get; set; }
 
         [BsonElement("monsterDrops")]
-        public List<ItemsCollection> MonsterDrops { get; set; }
+        public List<ItemCollection> MonsterDrops { get; set; }
 
         [BsonElement("monsterStats")]
         public Stats MonsterStats { get; set; }

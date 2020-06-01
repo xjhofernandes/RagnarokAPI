@@ -12,39 +12,39 @@ namespace RagnarokAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsController : ControllerBase
+    public class ItemController : ControllerBase
     {
-        private readonly ItemsService _itemsService;
+        private readonly ItemService _itemService;
 
-        public ItemsController(ItemsService itemsService)
+        public ItemController(ItemService itemService)
         {
-            _itemsService = itemsService;
+            _itemService = itemService;
         }
 
         [HttpPost]
-        public ActionResult<ItemsCollection> Create(ItemsCollection item)
+        public ActionResult<ItemCollection> Create(ItemCollection item)
         {
-            _itemsService.Create(item);
+            _itemService.Create(item);
 
             return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
         }
 
         [HttpPost]
-        public ActionResult<ItemsCollection> Create(List<ItemsCollection> item)
+        public ActionResult<ItemCollection> Create(List<ItemCollection> item)
         {
-            _itemsService.Create(item);
+            _itemService.Create(item);
 
             //return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
             return null;
         }
 
         [HttpGet]
-        public ActionResult<List<ItemsCollection>> Get() => _itemsService.Get();
+        public ActionResult<List<ItemCollection>> Get() => _itemService.Get();
 
         [HttpGet("{id}", Name = "GetItems")]
-        public ActionResult<ItemsCollection> Get(int id)
+        public ActionResult<ItemCollection> Get(int id)
         {
-            var item = _itemsService.Get(id);
+            var item = _itemService.Get(id);
 
             if (item == null)
             {
@@ -55,16 +55,16 @@ namespace RagnarokAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, ItemsCollection itemIn)
+        public IActionResult Update(int id, ItemCollection itemIn)
         {
-            var item = _itemsService.Get(id);
+            var item = _itemService.Get(id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            _itemsService.Update(id, itemIn);
+            _itemService.Update(id, itemIn);
 
             return NoContent();
         }
@@ -72,14 +72,14 @@ namespace RagnarokAPI.Controllers
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(int id)
         {
-            var item = _itemsService.Get(id);
+            var item = _itemService.Get(id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            _itemsService.Remove(item.Id);
+            _itemService.Remove(item.Id);
 
             return NoContent();
         }
