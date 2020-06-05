@@ -43,7 +43,7 @@ namespace RagnarokAPI
 
             services.AddSingleton<MonsterService>();
             services.AddSingleton<ItemService>();
-
+            //services.AddHttpsRedirection(opt => opt.HttpsPort = 443);
             services.AddControllers();
         }
 
@@ -54,19 +54,13 @@ namespace RagnarokAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.Use((context, next) =>
+            else
             {
-                context.Request.Scheme = "https";
-                return next();
-            });
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

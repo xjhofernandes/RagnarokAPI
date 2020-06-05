@@ -15,7 +15,7 @@ namespace RagnarokAPI.Controllers
         [HttpGet]
         public ContentResult Get()
         {
-            return base.Content("<h1>Hello, Ragnarok API!</h1>", "text/html");
+            return base.Content("<h1>Hello, Ragnarok API3.0!</h1>", "text/html");
         }
     }
 }
