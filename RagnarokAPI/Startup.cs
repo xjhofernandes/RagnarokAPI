@@ -43,7 +43,6 @@ namespace RagnarokAPI
 
             services.AddSingleton<MonsterService>();
             services.AddSingleton<ItemService>();
-
             services.AddControllers();
         }
 

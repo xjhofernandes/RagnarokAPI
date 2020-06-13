@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MongoDB.Driver;
@@ -25,29 +27,7 @@ namespace RagnarokAPI.Service
         public List<ItemCollection> Get() =>
             _item.Find(item => true).ToList();
 
-        internal List<ItemCollection> Create(List<ItemCollection> item)
-        {
-            _item.InsertMany(item);
-            return item;
-        }
-
-        internal ItemCollection Create(ItemCollection item)
-        {
-            _item.InsertOne(item);
-            return item;
-        }
-
-
         public ItemCollection Get(int id) =>
             _item.Find<ItemCollection>(item => item.ItemId == id).FirstOrDefault();
-
-        public void Update(int id, ItemCollection itemIn) =>
-            _item.ReplaceOne(item => item.ItemId == id, itemIn);
-
-        public void Remove(ItemCollection itemIn) =>
-            _item.DeleteOne(item => item.Id == itemIn.Id);
-
-        public void Remove(string id) =>
-            _item.DeleteOne(item => item.Id == id);
     }
 }

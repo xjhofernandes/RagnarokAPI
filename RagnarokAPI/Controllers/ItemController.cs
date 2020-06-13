@@ -21,23 +21,6 @@ namespace RagnarokAPI.Controllers
             _itemService = itemService;
         }
 
-        [HttpPost]
-        public ActionResult<ItemCollection> Create(ItemCollection item)
-        {
-            _itemService.Create(item);
-
-            return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
-        }
-
-        [HttpPost]
-        public ActionResult<ItemCollection> Create(List<ItemCollection> item)
-        {
-            _itemService.Create(item);
-
-            //return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
-            return null;
-        }
-
         [HttpGet]
         public ActionResult<List<ItemCollection>> Get() => _itemService.Get();
 
@@ -53,36 +36,5 @@ namespace RagnarokAPI.Controllers
 
             return item;
         }
-
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, ItemCollection itemIn)
-        {
-            var item = _itemService.Get(id);
-
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            _itemService.Update(id, itemIn);
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(int id)
-        {
-            var item = _itemService.Get(id);
-
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            _itemService.Remove(item.Id);
-
-            return NoContent();
-        }
-
     }
 }
