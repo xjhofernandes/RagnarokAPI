@@ -5,3 +5,5 @@
 RagnarokAPI/bin/Debug/netcoreapp3.1/appsettings.Development.json
 RagnarokAPI/bin
 RagnarokAPI/obj
+bin
+obj
