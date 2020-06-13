@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MongoDB.Driver;
@@ -16,10 +18,24 @@ namespace RagnarokAPI.Service
 
         public ItemService(IItemDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
+            var client = new MongoClient(GetMongoConnectionStringWithIps(settings.ConnectionString));
+            
             var database = client.GetDatabase(settings.DatabaseName);
 
             _item = database.GetCollection<ItemCollection>(settings.ItemsCollectionName);
+        }
+
+        private string GetMongoConnectionStringWithIps(string connectionString)
+        {
+            var builder = new MongoUrlBuilder(connectionString);
+            //var servers = new List<MongoServerAddress>();
+            //foreach (var server in builder.Servers)
+            //{
+            //    //var address = Dns.GetHostAddresses(server.Host).FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
+            //    servers.Add(new MongoServerAddress(connectionString));
+            //}
+            //builder.Servers = servers;
+            return builder.ToMongoUrl().ToString();
         }
 
         public List<ItemCollection> Get() =>
