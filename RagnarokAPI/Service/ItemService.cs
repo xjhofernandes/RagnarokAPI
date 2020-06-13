@@ -18,52 +18,16 @@ namespace RagnarokAPI.Service
 
         public ItemService(IItemDatabaseSettings settings)
         {
-            var client = new MongoClient(GetMongoConnectionStringWithIps(settings.ConnectionString));
-            
+            var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
             _item = database.GetCollection<ItemCollection>(settings.ItemsCollectionName);
         }
 
-        private string GetMongoConnectionStringWithIps(string connectionString)
-        {
-            var builder = new MongoUrlBuilder(connectionString);
-            //var servers = new List<MongoServerAddress>();
-            //foreach (var server in builder.Servers)
-            //{
-            //    //var address = Dns.GetHostAddresses(server.Host).FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
-            //    servers.Add(new MongoServerAddress(connectionString));
-            //}
-            //builder.Servers = servers;
-            return builder.ToMongoUrl().ToString();
-        }
-
         public List<ItemCollection> Get() =>
             _item.Find(item => true).ToList();
 
-        internal List<ItemCollection> Create(List<ItemCollection> item)
-        {
-            _item.InsertMany(item);
-            return item;
-        }
-
-        internal ItemCollection Create(ItemCollection item)
-        {
-            _item.InsertOne(item);
-            return item;
-        }
-
-
         public ItemCollection Get(int id) =>
             _item.Find<ItemCollection>(item => item.ItemId == id).FirstOrDefault();
-
-        public void Update(int id, ItemCollection itemIn) =>
-            _item.ReplaceOne(item => item.ItemId == id, itemIn);
-
-        public void Remove(ItemCollection itemIn) =>
-            _item.DeleteOne(item => item.Id == itemIn.Id);
-
-        public void Remove(string id) =>
-            _item.DeleteOne(item => item.Id == id);
     }
 }

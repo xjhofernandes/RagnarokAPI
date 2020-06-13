@@ -21,15 +21,6 @@ namespace RagnarokAPI.Controllers
             _monsterService = monsterService;
         }
 
-        [HttpPost]
-        public ActionResult<MonsterCollection> Create(List<MonsterCollection> monsters)
-        {
-            _monsterService.Create(monsters);
-
-            //return CreatedAtRoute("GetItems", new { id = item.Id.ToString() }, item);
-            return null;
-        }
-
         [HttpGet]
         public ActionResult<List<MonsterCollection>> Get() => _monsterService.Get();
 
@@ -44,36 +35,6 @@ namespace RagnarokAPI.Controllers
             }
 
             return item;
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult Update(string id, MonsterCollection itemIn)
-        {
-            var item = _monsterService.Get(id);
-
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            _monsterService.Update(id, itemIn);
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string id)
-        {
-            var item = _monsterService.Get(id);
-
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            _monsterService.Remove(item.Id);
-
-            return NoContent();
         }
     }
 }

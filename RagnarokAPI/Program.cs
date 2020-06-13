@@ -22,7 +22,6 @@ namespace RagnarokAPI
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     var port = Environment.GetEnvironmentVariable("PORT");
-
                     webBuilder.UseStartup<Startup>().UseUrls("http://*:" + port);
                 });
     }
