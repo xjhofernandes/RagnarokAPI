@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MongoDB.Driver;
 using RagnarokAPI.Models;
-using RagnarokAPI.DataBaseSettings;
 using IItemDatabaseSettings = RagnarokAPI.DataBaseSettings.IItemDatabaseSettings;
 
 namespace RagnarokAPI.Service

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MongoDB.Driver;
 using RagnarokAPI.Models;
-using RagnarokAPI.DataBaseSettings;
 using IMonsterDatabaseSettings = RagnarokAPI.DataBaseSettings.IMonsterDatabaseSettings;
 
 namespace RagnarokAPI.Service
