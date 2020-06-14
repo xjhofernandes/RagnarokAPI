@@ -36,7 +36,7 @@ ConnectionString: "mongodb://localhost:27017"
 
 ## Setup using Docker
 
-If you do not want to install Mongo, Node and Yarn, follow these steps.
+If you do wanna use the Docker follow this steps: 
 
 ### Dependencies
 
