@@ -1,9 +1,9 @@
 # Ragnarök Online API
 <p align="center">
-  <img src="https://i.ibb.co/w7zcbPv/oie-jpg.png" alt="bibleAPI" width="300">
+  <img src="https://i.ibb.co/w7zcbPv/oie-jpg.png" alt="RagnarokAPI" width="300">
 </p>
 <p align="center">
-  <a href="https://ragnarokapi.herokuapp.com/inicio">Ragnarok API</a> is a RESTful API of the Ragnarök Online developed with .NET Core + Docker + MongoDB 🚀
+  <a href="https://xjhofernandes.github.io/RagnarokAPIFront/">Ragnarok API</a> is a RESTful API of the Ragnarök Online developed with .NET Core + Docker + MongoDB 🚀
 </p>
 
 ## ► Table of Contents
