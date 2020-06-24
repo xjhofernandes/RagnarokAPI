@@ -3,11 +3,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace RagnarokAPI.Models
 {
+    [BsonIgnoreExtraElements]
     public class ItemCollection
     {
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-
         [BsonElement("itemId")]
         public int ItemId { get; set; }
 
