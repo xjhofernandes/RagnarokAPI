@@ -45,7 +45,7 @@ If you do wanna use the Docker follow this steps:
 
 ### Steps
 
-- To build and run an image of ther project in Docker, run this commands: 
+- To build and run an image of the project in Docker, run this commands: 
 1. To build a image, use this command in the root folder: ` docker build --rm -f "Dockerfile" -t "RagApi:latest" .`
 2. To run the image in local: `docker run -it --rm -p 5000:80 --name ragapi RagApi`
 
