@@ -11,6 +11,7 @@
 - [About](#about)
 - [Setup](#setup)
 - [Setup using Docker](#setup-using-docker)
+- [Credits](#credits)
 
 ## About
 
@@ -50,3 +51,11 @@ If you do wanna use the Docker follow this steps:
 2. To run the image in local: `docker run -it --rm -p 5000:80 --name ragapi RagApi`
 
 - Visit `localhost:5000/Inicio` to see the running api status!
+
+### Credits
+
+- Data mining from [RagnaPlace](https://ragnaplace.com), a Ragnarök Online database site. 
+
+- Ragnarök API site and documentation inspired in [bibleAPI](https://bibleapi.co). 💗 
+
+- [Renderjson](https://github.com/caldwell/renderjson) plugin in javascript to render a html viewer from JSON. 
