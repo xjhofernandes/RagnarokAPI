@@ -5,8 +5,9 @@ using RagnarokAPI.Service;
 
 namespace RagnarokAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class ItemController : ControllerBase
     {
         private readonly ItemService _itemService;
@@ -15,9 +16,6 @@ namespace RagnarokAPI.Controllers
         {
             _itemService = itemService;
         }
-
-        [HttpGet]
-        public ActionResult<List<ItemCollection>> Get() => _itemService.Get();
 
         [HttpGet("{id}", Name = "GetItems")]
         public ActionResult<ItemCollection> Get(int id)

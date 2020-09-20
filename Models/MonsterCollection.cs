@@ -9,25 +9,25 @@ namespace RagnarokAPI.Models
     public class MonsterCollection
     {
         [BsonElement("monsterId")]
-        public string MonsterId { get; set; }
+        public string ID { get; set; }
 
         [BsonElement("monsterName")]
-        public string MonsterName { get; set; }
+        public string Name { get; set; }
 
         [BsonElement("monsterGifUrl")]
-        public string MonsterGifUrl { get; set; }
+        public string GifUrl { get; set; }
 
         [BsonElement("monsterDrops")]
-        public List<ItemCollection> MonsterDrops { get; set; }
+        public List<ItemCollection> Drops { get; set; }
 
         [BsonElement("monsterStats")]
-        public Stats MonsterStats { get; set; }
+        public Stats Stats { get; set; }
 
         [BsonElement("elementExtraDamage")]
         public Element ElementExtraDamage { get; set; }
 
         [BsonElement("monsterSpawnMaps")]
-        public List<Spawn> MonsterSpawnMaps { get; set; }
+        public List<Spawn> SpawnMaps { get; set; }
     }
 
     public class Spawn
@@ -42,16 +42,16 @@ namespace RagnarokAPI.Models
     public class Stats
     {
         [BsonElement("monsterLevel")]
-        public int? MonsterLevel { get; set; }
+        public int? Level { get; set; }
 
         [BsonElement("monsterHp")]
-        public int? MonsterHp { get; set; }
+        public int? Hp { get; set; }
 
         [BsonElement("monsterSize")]
-        public int? MonsterSize { get; set; }
+        public int? Size { get; set; }
 
         [BsonElement("monsterRace")]
-        public int? MonsterRace { get; set; }
+        public int? Race { get; set; }
     }
 
     public class Element

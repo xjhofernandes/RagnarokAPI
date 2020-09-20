@@ -7,13 +7,13 @@ namespace RagnarokAPI.Models
     public class ItemCollection
     {
         [BsonElement("itemId")]
-        public int ItemId { get; set; }
+        public int ID { get; set; }
 
         [BsonElement("nameItem")]
-        public string NameItem { get; set; }
+        public string Name { get; set; }
 
         [BsonElement("itemImgUrl")]
-        public string ItemImgUrl { get; set; }
+        public string ImgUrl { get; set; }
 
         [BsonElement("collectionImgUrl")]
         public string CollectionImgUrl { get; set; }
@@ -22,6 +22,6 @@ namespace RagnarokAPI.Models
         public string CardImgUrl { get; set; }
 
         [BsonElement("itemDescription")]
-        public string ItemDescription { get; set; }
+        public string Description { get; set; }
     }
 }
