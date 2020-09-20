@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +33,12 @@ namespace RagnarokAPI
             services.AddSingleton<IItemDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<ItemDatabaseSettings>>().Value);
 
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                config.ReportApiVersions = true;
+            });
             services.AddSingleton<MonsterService>();
             services.AddSingleton<ItemService>();
             services.AddControllers();

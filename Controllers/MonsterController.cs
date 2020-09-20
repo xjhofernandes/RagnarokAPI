@@ -5,8 +5,9 @@ using RagnarokAPI.Service;
 
 namespace RagnarokAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class MonsterController : ControllerBase
     {
         private readonly MonsterService _monsterService;
