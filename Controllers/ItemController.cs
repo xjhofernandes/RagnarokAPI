@@ -16,9 +16,6 @@ namespace RagnarokAPI.Controllers
             _itemService = itemService;
         }
 
-        [HttpGet]
-        public ActionResult<List<ItemCollection>> Get() => _itemService.Get();
-
         [HttpGet("{id}", Name = "GetItems")]
         public ActionResult<ItemCollection> Get(int id)
         {

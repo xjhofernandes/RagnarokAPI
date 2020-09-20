@@ -21,6 +21,6 @@ namespace RagnarokAPI.Service
             _item.Find(item => true).ToList();
 
         public ItemCollection Get(int id) =>
-            _item.Find<ItemCollection>(item => item.ItemId == id).FirstOrDefault();
+            _item.Find<ItemCollection>(item => item.ID == id).FirstOrDefault();
     }
 }

@@ -16,9 +16,6 @@ namespace RagnarokAPI.Controllers
             _monsterService = monsterService;
         }
 
-        [HttpGet]
-        public ActionResult<List<MonsterCollection>> Get() => _monsterService.Get();
-
         [HttpGet("{id}", Name = "GetMonsters")]
         public ActionResult<MonsterCollection> Get(string id)
         {
