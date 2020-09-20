@@ -17,9 +17,6 @@ namespace RagnarokAPI.Service
             _item = database.GetCollection<ItemCollection>(settings.ItemsCollectionName);
         }
 
-        public List<ItemCollection> Get() =>
-            _item.Find(item => true).ToList();
-
         public ItemCollection Get(int id) =>
             _item.Find<ItemCollection>(item => item.ID == id).FirstOrDefault();
     }

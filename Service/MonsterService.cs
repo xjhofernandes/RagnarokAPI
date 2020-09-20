@@ -17,9 +17,6 @@ namespace RagnarokAPI.Service
             _monster = database.GetCollection<MonsterCollection>(settings.MonstersCollectionName);
         }
 
-        public List<MonsterCollection> Get() =>
-            _monster.Find(monster => true).ToList();
-
         public MonsterCollection Get(string id) =>
             _monster.Find<MonsterCollection>(monster => monster.ID == id).FirstOrDefault();
     }
